@@ -24,6 +24,12 @@ pub struct WorkspaceAttributes {
     #[serde(flatten)]
     pub extra: serde_json::Value,
 }
+    
+impl Display for Workspace {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{} ({})", self.attributes.name, self.id)
+    }
+}
 
 impl TerraformCloud {
     pub async fn list_workspaces<S: Display>(
